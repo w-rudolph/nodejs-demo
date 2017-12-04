@@ -1,6 +1,5 @@
 const User = require('../../models/User');
-const crypto = require('crypto');
-const hash = crypto.createHash('md5');
+const md5 = require('md5');
 
 module.exports = {
     index: function (req, res, next) {
@@ -14,7 +13,7 @@ module.exports = {
         if (!password) {
             return res.json({ code: 0, error: 1, message: '请输入密码' })
         }
-        const query = { name, password: hash.update(password).digest('hex') };
+        const query = { name, password: md5(password) };
         User.findOne(query)
             .then(user => {
                 if (!user) {
@@ -26,7 +25,7 @@ module.exports = {
                     res.redirect('/');
                 });
             }).catch(err => {
-                res.redirect('login');
+                res.redirect('/login');
             })
     },
 };

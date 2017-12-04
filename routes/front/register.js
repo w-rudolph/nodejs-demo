@@ -1,6 +1,5 @@
 const User = require('../../models/User');
-const crypto = require('crypto');
-const hash = crypto.createHash('md5');
+const md5 = require('md5');
 
 module.exports = {
     index: function (req, res, next) {
@@ -30,14 +29,14 @@ module.exports = {
         }).then(() => {
             const user = new User({
                 name: name,
-                password: hash.update(password).digest('hex'),
+                password: md5(password),
                 updateTime: +new Date()
             });
             user.save().then(user => {
-                res.redirect('login');
+                res.redirect('/login');
             }).catch(err => {
                 console.log(err);
-                res.redirect('register');
+                res.redirect('/register');
             })
         })
     },
