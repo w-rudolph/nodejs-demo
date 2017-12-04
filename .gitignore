@@ -5,4 +5,4 @@
  .vscode/
 /db/data
 /db/dump.rdb
-/db/mongo.log
+/db/mongo.log*

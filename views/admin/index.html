@@ -6,10 +6,10 @@
     </head>
     <body>
         <h1>管理后台</h1>
-        <h4>Hello <%= userInfo.name %></h4>
-        <% if(userInfo) {%>
+        <h4>Hello {{ userInfo.name}}</h4>
+        {% if userInfo %}
             <a href="/logout">退出登录</a>
-        <% } %>
+        {% endif %}
         <p>Welcome to 管理后台</p>
     </body>
 </html>

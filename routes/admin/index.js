@@ -6,7 +6,7 @@ const User = require('../../models/User');
 
 /* */
 router.get('*', function (req, res, next) {
-    if (req.session.userId) {
+    if (req.session && req.session.userId) {
         return next();
     }
     res.redirect('/login');

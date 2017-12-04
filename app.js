@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const swig = require('swig');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -15,7 +16,7 @@ app.use(cookieParser());
 
 // session
 app.use(redisSession.run());
-redisSession.store.on('connected:', () => {
+redisSession.store.on('connected', () => {
     console.log('Redis connected!');
 }).on('error', err => {
     console.log('Redis connection error: ' + err);
@@ -33,7 +34,8 @@ mongoose.Promise = global.Promise;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
+app.engine('html', swig.renderFile);
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
