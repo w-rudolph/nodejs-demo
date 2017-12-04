@@ -5,11 +5,22 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var sessionConfig = require('./config/session');
-
+var mongoose = require('mongoose');
+var mongoConfig = require('./config/mongodb');
 var app = express();
 
+// cookie
 app.use(cookieParser());
+// session
 app.use(sessionConfig);
+// mongoDB
+mongoose.createConnection(mongoConfig)
+    .on('connected', () => {
+        console.log('Mongoose connection open to: ' + mongoConfig);
+    })
+    .on('error', err => {
+        console.log('Mongoose connection error: ' + err);
+    })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
