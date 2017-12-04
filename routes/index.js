@@ -5,8 +5,8 @@ const logoutRouter = require('./front/logout');
 const registerRouter = require('./front/register');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+router.get('/', function (req, res, next) {
+    res.render('index', { title: 'Express', userInfo: req.session ? req.session.userInfo : null });
 });
 
 /* Login page */
