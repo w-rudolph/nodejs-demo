@@ -1,0 +1,1 @@
+mongod --config E:\express\db\mongo.config 

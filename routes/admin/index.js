@@ -1,15 +1,16 @@
-var express = require('express');
-var router = express.Router();
-var postRouter = require('./post');
-var userRouter = require('./user');
+const express = require('express');
+const router = express.Router();
+const postRouter = require('./post');
+const userRouter = require('./user');
 
 
 /* */
-router.get('*', function(req, res, next){
-    if(req.session.userId){
-        return next();
-    }
-    res.redirect('/login');
+router.use(function(req, res, next){
+    console.log(req.session);
+    // if(req.session.userId){
+    //     return next();
+    // }
+    next();
 })
 
 /* Admin home page. */

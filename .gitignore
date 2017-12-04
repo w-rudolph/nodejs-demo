@@ -3,3 +3,5 @@
 /dist/
  npm-debug.log
  .vscode/
+/db/data
+/db/mongo.log

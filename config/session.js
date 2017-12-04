@@ -1,12 +1,12 @@
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
 
 module.exports = session({
     secret: 'secret key',
     resave: false,
     saveUninitialized: false,
     cookie: {
-        maxAge: 60 * 1000,
+        maxAge: 60 * 1000 * 30,
         secure: false
     },
     store: new RedisStore({
