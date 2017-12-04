@@ -20,5 +20,5 @@ module.exports = {
             store: store
         })
     },
-    store: store
+    redisClient: store.client
 };

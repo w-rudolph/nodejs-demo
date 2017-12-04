@@ -16,20 +16,23 @@ app.use(cookieParser());
 
 // session
 app.use(redisSession.run());
-redisSession.store.on('connected', () => {
-    console.log('Redis connected!');
-}).on('error', err => {
-    console.log('Redis connection error: ' + err);
-});
+redisSession.redisClient
+    .on('connect', () => {
+        console.log('Redis connected!');
+    })
+    .on('error', err => {
+        console.log('Redis connection error: ' + err);
+    });
 
 // mongoDB
-mongoose.connect(mongoConfig, { useMongoClient: true }, err => {
-    if (err) {
-        console.log('Mongoose connection error: ' + err);
-    } else {
+mongoose.connect(mongoConfig, { useMongoClient: true });
+mongoose.connection
+    .on('open', () => {
         console.log('Mongoose connection open to: ' + mongoConfig);
-    }
-});
+    })
+    .on('error', err => {
+        console.log('Mongoose connection error: ' + err);
+    });
 mongoose.Promise = global.Promise;
 
 // view engine setup
