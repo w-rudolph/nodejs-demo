@@ -21,6 +21,7 @@ module.exports = {
                     return Promise.reject();
                 }
                 req.session.userId = user._id;
+                req.session.userInfo = user;
                 req.session.save(() => {
                     res.redirect('/');
                 });

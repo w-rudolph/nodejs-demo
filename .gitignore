@@ -4,4 +4,5 @@
  npm-debug.log
  .vscode/
 /db/data
+/db/dump.rdb
 /db/mongo.log

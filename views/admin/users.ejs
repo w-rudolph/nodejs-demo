@@ -9,7 +9,11 @@
         <h4>Hello <%= userInfo.name %></h4>
         <% if(userInfo) {%>
             <a href="/logout">退出登录</a>
-        <% } %>
+        <% }%>
         <p>Welcome to 管理后台</p>
+
+        <% for(var i = 0; i < users.length; i++){ %>
+            <h5><%= users[i].name %> - <%= users[i].createTime %> - <%= users[i].updateTime %></h5>
+        <% } %>
     </body>
 </html>

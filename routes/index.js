@@ -6,7 +6,6 @@ const registerRouter = require('./front/register');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    console.log(req.session.userId);
     res.render('index', { title: 'Express' });
 });
 

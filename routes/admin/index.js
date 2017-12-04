@@ -2,20 +2,19 @@ const express = require('express');
 const router = express.Router();
 const postRouter = require('./post');
 const userRouter = require('./user');
-
+const User = require('../../models/User');
 
 /* */
-router.use(function(req, res, next){
-    console.log(req.session);
-    // if(req.session.userId){
-    //     return next();
-    // }
-    next();
+router.get('*', function (req, res, next) {
+    if (req.session.userId) {
+        return next();
+    }
+    res.redirect('login');
 })
 
 /* Admin home page. */
-router.get('/', function(req, res, next) {
-    res.send('Admin page');
+router.get('/', function (req, res, next) {
+    res.render('admin/index', { userInfo: req.session.userInfo });
 });
 
 /* User page */
