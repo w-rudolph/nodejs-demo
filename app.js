@@ -4,33 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
-
-
-// routes
-var routesConfig = require('./routes/config');
+var sessionConfig = require('./config/session');
 
 var app = express();
 
-//session
 app.use(cookieParser());
-app.use(session({
-    secret: 'QQXQ4#a!',
-    name: 'SESSION_ID',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 60 * 1000,
-        secure: false
-    },
-    store: new RedisStore({
-        host: 'localhost',
-        port: '6379',
-        db: 0,
-        ttl: 30 * 60 * 60 * 24,
-    })
-}));
+app.use(sessionConfig);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -43,19 +22,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-//auth
-var auth = require('./routes/auth');
-app.use(auth);
-
-app.use(function (req, res, next) {
-    console.log('[URL]:', req.url);
-    next();
-});
-
-for (var i = 0, keys = Object.keys(routesConfig); i < keys.length; i++) {
-    app.use(keys[i], routesConfig[keys[i]]);
-}
+app.use('/', require('./routes/index'));
+app.use('/admin', require('./routes/admin/index'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
