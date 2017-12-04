@@ -7,5 +7,8 @@ module.exports = new mongoose.Schema({
         type: Number,
         default: +new Date()
     },
-    updateTime: Number
+    updateTime: {
+        type: Number,
+        default: +new Date()
+    }
 });
