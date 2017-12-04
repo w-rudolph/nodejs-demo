@@ -13,7 +13,7 @@
         <p>Welcome to 管理后台</p>
 
         {% for user in  users %}
-            <h5>{{ user.name }} - {{ user.createTime }} - {{ user.updateTime }}</h5>
+            <h5>{{ user.name }} - {{ user.createTime | date('Y/m/d H:i:s', -480) }} - {{ user.updateTime | date('Y/m/d H:i:s', -480) }}</h5>
         {% endfor %}
     </body>
 </html>
