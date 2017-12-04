@@ -1,8 +1,12 @@
+const User = require('../models/User');
+
 module.exports = {
-    getInfo() {
-        return "[user:service]"
+    getUserById() {
+
     },
-    logOut() {
-        console.log('log out');
-    }
+    getAllUsers() {
+
+    },
+    
+
 }

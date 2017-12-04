@@ -1,1 +1,1 @@
-mongod --config E:\express\db\mongo.config 
+mongod --config mongo.config 
