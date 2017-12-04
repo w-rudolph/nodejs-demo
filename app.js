@@ -5,7 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const redisStore = require('./config/session');
+const redisSession = require('./config/session');
 const mongoose = require('mongoose');
 const mongoConfig = require('./config/mongodb');
 const app = express();
@@ -14,17 +14,8 @@ const app = express();
 app.use(cookieParser());
 
 // session
-app.use(session({
-    secret: 'secret key',
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        maxAge: 24 * 60 * 60 * 1000,
-        secure: false
-    },
-    store: redisStore
-}));
-redisStore.on('connected:', () => {
+app.use(redisSession.run());
+redisSession.store.on('connected:', () => {
     console.log('Redis connected!');
 }).on('error', err => {
     console.log('Redis connection error: ' + err);
