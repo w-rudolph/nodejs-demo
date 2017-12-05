@@ -25,10 +25,10 @@ redisSession.redisClient
     });
 
 // mongoDB
-mongoose.connect(mongoConfig, { useMongoClient: true });
+mongoose.connect(mongoConfig.db, mongoConfig.options);
 mongoose.connection
     .on('open', () => {
-        console.log('Mongoose connection open to: ' + mongoConfig);
+        console.log('Mongoose connection open to: ' + mongoConfig.db);
     })
     .on('error', err => {
         console.log('Mongoose connection error: ' + err);
