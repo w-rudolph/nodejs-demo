@@ -6,4 +6,4 @@
 /db/data
 /db/dump.rdb
 /db/mongo.log*
-coverage
+/coverage
