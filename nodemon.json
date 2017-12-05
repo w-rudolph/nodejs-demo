@@ -12,7 +12,9 @@
         "routes/",
         "views/",
         "services/",
-        "public/"
+        "public/",
+        "schemas/",
+        "models/"
     ],
     "env": {
         "NODE_ENV": "development"
