@@ -7,3 +7,4 @@
 /db/dump.rdb
 /db/mongo.log*
 /coverage
+.vs
