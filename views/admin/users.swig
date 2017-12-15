@@ -3,7 +3,6 @@
 {% block title %} 管理后台 {% endblock %}
 
 {% block head %} 
-    <link rel='stylesheet' href='/stylesheets/style.css' /> 
     <script type="text/javascript">
         var Config = {
             users: {{JSON.stringify(users)}}
@@ -23,13 +22,5 @@
             {% for user in  users %}
                 <h5>{{ user.name }} - {{ user.createTime | date('Y/m/d H:i:s', -480) }} - {{ user.updateTime | date('Y/m/d H:i:s', -480) }}</h5>
             {% endfor %}
-            <el-table :data="users" border>
-                <el-table-column label="用户名" prop="name"></el-table-column>
-                <el-table-column label="创建时间" prop="createTime"></el-table-column>
-                <el-table-column label="更新时间" prop="updateTime"></el-table-column>
-            </el-table>
     </div>
-{% endblock %}
-{% block footer %}
-    <script src="/javascripts/admin/users.js"></script>
 {% endblock %}

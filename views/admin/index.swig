@@ -2,8 +2,6 @@
 
 {% block title %} 管理后台 {% endblock %}
 
-{% block head %} <link rel='stylesheet' href='/stylesheets/style.css' /> {% endblock %}
-
 {% block content %}
     <div id="app">
         <h4>Hello {{ userInfo.name}}</h4>
@@ -14,7 +12,4 @@
         <el-button>Hello</el-button>
         <span v-text="message"></span>
     </div>
-{% endblock %}
-{% block footer %}
-    <script src="/javascripts/admin/index.js"></script>
 {% endblock %}

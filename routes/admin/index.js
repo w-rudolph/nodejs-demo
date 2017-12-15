@@ -23,7 +23,11 @@ router.get('/user/list', userRouter.list);
 router.get('/user/add', userRouter.add);
 
 /* Post page. */
+router.get('/posts', postRouter.list);
+router.get('/post/list', postRouter.list);
 router.get('/post/add', postRouter.add);
+router.get('/post', postRouter.add);
+router.post('/post/update', postRouter.update);
 router.get('/post/delete', postRouter.delete);
 
 
