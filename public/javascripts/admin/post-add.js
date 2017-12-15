@@ -2,7 +2,12 @@ $(document).ready(function () {
     // init editor
     $('#post_content').summernote({
         height: 300,
-        lang: 'zh-CN'
+        lang: 'zh-CN',
+        callbacks: {
+            onInit: function(){
+                $('.note-image-input').attr('accept', 'image/jpeg, image/jpg, image/png, image/gif');
+            }
+        }
     });
 
     // form submit
